@@ -1,0 +1,145 @@
+---
+// FeaturedProducts.astro - 易开盖/金属包装 6 大产品分类板块
+---
+
+<section id="products" class="py-20 bg-gray-50 border-t border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- 头部标题与全部产品链接 -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div>
+        <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Featured Products</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mt-1">Comprehensive Metal Packaging Catalog</h2>
+        <p class="text-gray-600 mt-2 max-w-2xl text-base">
+          Explore our complete manufacturing lines of easy-open ends, peel-off lids, and matching industrial closures.
+        </p>
+      </div>
+      <a href="/products" class="mt-4 md:mt-0 text-blue-600 font-semibold hover:text-blue-700 flex items-center gap-2 group">
+        View full catalog 
+        <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+      </a>
+    </div>
+
+    <!-- 6 大核心产品分类网格 (3列 x 2行) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- 1. Aluminum Easy Open End -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+        <div class="h-56 bg-slate-900 flex items-center justify-center relative overflow-hidden">
+          <span class="text-gray-300 font-medium text-sm">Aluminum EOE Preview</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Aluminum Easy Open End</h3>
+            <ul class="text-gray-600 text-sm mb-4 space-y-1">
+              <li class="flex items-center gap-2"><span>•</span> Reputation First</li>
+              <li class="flex items-center gap-2"><span>•</span> High-Quality</li>
+            </ul>
+          </div>
+          <a href="/contact" class="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center gap-1">
+            MORE &gt;&gt;
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. Tinplate Easy Open End (设为热门爆款样式) -->
+      <div class="bg-white rounded-2xl shadow-md border-2 border-amber-500/30 overflow-hidden hover:shadow-lg transition-shadow flex flex-col relative">
+        <div class="absolute top-3 right-3 z-10">
+          <span class="bg-amber-500 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">Hot</span>
+        </div>
+        <div class="h-56 bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center relative overflow-hidden">
+          <span class="text-amber-100 font-medium text-sm">Tinplate EOE Preview</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Tinplate Easy Open End</h3>
+            <ul class="text-gray-600 text-sm mb-4 space-y-1">
+              <li class="flex items-center gap-2"><span>•</span> Reputation First</li>
+              <li class="flex items-center gap-2"><span>•</span> High-Quality</li>
+            </ul>
+          </div>
+          <a href="/contact" class="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center gap-1">
+            MORE &gt;&gt;
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. Easy Peel off Lid -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+        <div class="h-56 bg-slate-900 flex items-center justify-center relative overflow-hidden">
+          <span class="text-gray-300 font-medium text-sm">Easy Peel off Lid Preview</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Easy Peel off Lid</h3>
+            <ul class="text-gray-600 text-sm mb-4 space-y-1">
+              <li class="flex items-center gap-2"><span>•</span> Reputation First</li>
+              <li class="flex items-center gap-2"><span>•</span> High-Quality</li>
+            </ul>
+          </div>
+          <a href="/contact" class="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center gap-1">
+            MORE &gt;&gt;
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. Penny Lever Lid -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+        <div class="h-56 bg-slate-900 flex items-center justify-center relative overflow-hidden">
+          <span class="text-gray-300 font-medium text-sm">Penny Lever Lid Preview</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Penny Lever Lid</h3>
+            <ul class="text-gray-600 text-sm mb-4 space-y-1">
+              <li class="flex items-center gap-2"><span>•</span> Reputation First</li>
+              <li class="flex items-center gap-2"><span>•</span> High-Quality</li>
+            </ul>
+          </div>
+          <a href="/contact" class="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center gap-1">
+            MORE &gt;&gt;
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. Bottom Lid -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+        <div class="h-56 bg-slate-900 flex items-center justify-center relative overflow-hidden">
+          <span class="text-gray-300 font-medium text-sm">Bottom Lid Preview</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Bottom Lid</h3>
+            <ul class="text-gray-600 text-sm mb-4 space-y-1">
+              <li class="flex items-center gap-2"><span>•</span> Reputation First</li>
+              <li class="flex items-center gap-2"><span>•</span> High-Quality</li>
+            </ul>
+          </div>
+          <a href="/contact" class="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center gap-1">
+            MORE &gt;&gt;
+          </a>
+        </div>
+      </div>
+
+      <!-- 6. Lug Cap / Screw Cap -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200/80 overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+        <div class="h-56 bg-slate-900 flex items-center justify-center relative overflow-hidden">
+          <span class="text-gray-300 font-medium text-sm">Lug Cap / Screw Cap Preview</span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Lug Cap / Screw Cap</h3>
+            <ul class="text-gray-600 text-sm mb-4 space-y-1">
+              <li class="flex items-center gap-2"><span>•</span> Reputation First</li>
+              <li class="flex items-center gap-2"><span>•</span> High-Quality</li>
+            </ul>
+          </div>
+          <a href="/contact" class="text-blue-600 hover:text-blue-700 font-semibold text-sm flex items-center gap-1">
+            MORE &gt;&gt;
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
