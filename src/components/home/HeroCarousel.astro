@@ -1,123 +1,125 @@
 ---
-import { Image } from 'astro:assets';
-import { products } from '../../data/products';
+import { products, marqueeMobileProducts } from '../../data/products';
+
+const tracks = [
+	{
+		id: 'mobile',
+		items: marqueeMobileProducts,
+		viewportClass: 'product-marquee__viewport--mobile md:hidden',
+		loading: 'eager' as const,
+	},
+	{
+		id: 'desktop',
+		items: products,
+		viewportClass: 'product-marquee__viewport--desktop hidden md:block',
+		loading: 'lazy' as const,
+	},
+];
 ---
 
 <section class="product-marquee bg-slate-950 py-8 sm:py-10 lg:py-12" aria-labelledby="hot-products-heading">
 	<h2 id="hot-products-heading" class="product-marquee__heading">Hot Products</h2>
 
-	<div class="product-marquee__viewport">
-		<div class="product-marquee__track">
-			{
-				[false, true].map((isDuplicate) => (
-					<ul class="product-marquee__group" aria-hidden={isDuplicate ? 'true' : undefined}>
-						{products.map((product) => (
-							<li class="product-marquee__item">
-								<div class="product-card">
-									<div class="product-card__media is-loading">
-										<Image
-											src={product.image}
-											alt={isDuplicate ? '' : product.alt}
-											width={250}
-											height={250}
-											widths={[180, 220, 250]}
-											sizes="(max-width: 640px) 180px, 250px"
-											loading="lazy"
-											decoding="async"
-											class="product-card__image"
-										/>
-									</div>
-								</div>
-							</li>
-						))}
-					</ul>
-				))
-			}
-		</div>
-	</div>
+	{
+		tracks.map(({ id, items, viewportClass, loading }) => (
+			<div class={viewportClass} data-marquee-track={id}>
+				<div class="product-marquee__track">
+					{
+						[false, true].map((isDuplicate) => (
+							<ul class="product-marquee__group" aria-hidden={isDuplicate ? 'true' : undefined}>
+								{items.map((product) => (
+									<li class="product-marquee__item">
+										<div class="product-card">
+											<div class="product-card__media">
+												<img
+													src={product.src}
+													alt={isDuplicate ? '' : product.alt}
+													width="250"
+													height="250"
+													class="product-card__image"
+													loading={loading}
+													decoding="async"
+													fetchpriority={loading === 'eager' ? 'low' : 'auto'}
+												/>
+											</div>
+										</div>
+									</li>
+								))}
+							</ul>
+						))
+					}
+				</div>
+			</div>
+		))
+	}
 </section>
 
 <script>
 	const LOAD_TIMEOUT_MS = 3000;
+	const DESKTOP_MQ = window.matchMedia('(min-width: 768px)');
 
-	function initMarqueeImages() {
-		const viewport = document.querySelector('.product-marquee__viewport');
-		if (!viewport) return;
-
-		const images = viewport.querySelectorAll<HTMLImageElement>('.product-card__image');
-
-		images.forEach((img) => {
-			const media = img.closest('.product-card__media');
-			if (!media) return;
-
-			const markLoaded = () => {
-				media.classList.remove('is-loading', 'is-slow');
-				media.classList.add('is-loaded');
-			};
-
-			const markError = () => {
-				media.classList.remove('is-loading', 'is-slow');
-				media.classList.add('is-error');
-				img.hidden = true;
-			};
-
-			const slowTimer = window.setTimeout(() => {
-				if (!img.complete || img.naturalWidth === 0) {
-					media.classList.add('is-slow');
+	function eagerLoadImages(viewport: Element) {
+		viewport.querySelectorAll<HTMLImageElement>('.product-card__image').forEach((img) => {
+			if (img.loading !== 'eager') {
+				img.loading = 'eager';
+				const src = img.currentSrc || img.src;
+				if (src && !img.complete) {
+					img.src = '';
+					img.src = src;
 				}
-			}, LOAD_TIMEOUT_MS);
-
-			const clearSlowTimer = () => window.clearTimeout(slowTimer);
-
-			if (img.complete && img.naturalWidth > 0) {
-				clearSlowTimer();
-				markLoaded();
-			} else {
-				img.addEventListener(
-					'load',
-					() => {
-						clearSlowTimer();
-						markLoaded();
-					},
-					{ once: true },
-				);
-				img.addEventListener(
-					'error',
-					() => {
-						clearSlowTimer();
-						markError();
-					},
-					{ once: true },
-				);
 			}
 		});
+	}
 
-		// 懒加载在 transform 动画容器内可能失效，用 IO 提前触发即将进入视口的图片
-		if (!('IntersectionObserver' in window)) return;
+	function initMarqueeImages() {
+		const viewports = document.querySelectorAll<HTMLElement>('.product-marquee__viewport--mobile, .product-marquee__viewport--desktop');
 
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (!entry.isIntersecting) return;
+		viewports.forEach((viewport) => {
+			const isDesktopTrack = viewport.dataset.marqueeTrack === 'desktop';
+			const isVisible =
+				isDesktopTrack ? DESKTOP_MQ.matches : !DESKTOP_MQ.matches;
 
-					const img = entry.target;
-					if (!(img instanceof HTMLImageElement) || img.complete) return;
+			if (!isVisible) return;
 
-					img.loading = 'eager';
-					const src = img.currentSrc || img.src;
-					if (src) {
-						img.src = '';
-						img.src = src;
+			if (isDesktopTrack && DESKTOP_MQ.matches) {
+				eagerLoadImages(viewport);
+			}
+
+			const images = viewport.querySelectorAll<HTMLImageElement>('.product-card__image');
+
+			images.forEach((img) => {
+				const media = img.closest('.product-card__media');
+				if (!media) return;
+
+				const markError = () => media.classList.add('is-error');
+
+				const slowTimer = window.setTimeout(() => {
+					if (!img.complete || img.naturalWidth === 0) {
+						media.classList.add('is-slow');
 					}
-				});
-			},
-			{ root: null, rootMargin: '0px 320px', threshold: 0 },
-		);
+				}, LOAD_TIMEOUT_MS);
 
-		images.forEach((img) => observer.observe(img));
+				const clearSlowTimer = () => window.clearTimeout(slowTimer);
+
+				if (img.complete && img.naturalWidth > 0) {
+					clearSlowTimer();
+				} else {
+					img.addEventListener('load', () => clearSlowTimer(), { once: true });
+					img.addEventListener(
+						'error',
+						() => {
+							clearSlowTimer();
+							markError();
+						},
+						{ once: true },
+					);
+				}
+			});
+		});
 	}
 
 	initMarqueeImages();
+	DESKTOP_MQ.addEventListener('change', initMarqueeImages);
 	document.addEventListener('astro:page-load', initMarqueeImages);
 </script>
 
@@ -137,10 +139,12 @@ import { products } from '../../data/products';
 		color: rgb(148 163 184);
 	}
 
-	.product-marquee__viewport {
+	.product-marquee__viewport--mobile,
+	.product-marquee__viewport--desktop {
 		overflow: hidden;
 		width: 100%;
 		max-width: none;
+		min-height: 250px;
 	}
 
 	.product-marquee__track {
@@ -149,6 +153,7 @@ import { products } from '../../data/products';
 		flex-wrap: nowrap;
 		align-items: stretch;
 		width: max-content;
+		min-width: max-content;
 		flex-shrink: 0;
 		animation: product-marquee-scroll 45s linear infinite;
 		will-change: transform;
@@ -157,7 +162,8 @@ import { products } from '../../data/products';
 		transform: translate3d(0, 0, 0);
 	}
 
-	.product-marquee__viewport:hover .product-marquee__track {
+	.product-marquee__viewport--mobile:hover .product-marquee__track,
+	.product-marquee__viewport--desktop:hover .product-marquee__track {
 		animation-play-state: paused;
 	}
 
@@ -165,8 +171,11 @@ import { products } from '../../data/products';
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
+		flex: 0 0 auto;
 		flex-shrink: 0;
 		align-items: stretch;
+		width: max-content;
+		min-width: max-content;
 		gap: 1.5rem;
 		margin: 0;
 		padding: 0 0.75rem;
@@ -176,12 +185,15 @@ import { products } from '../../data/products';
 	.product-marquee__item {
 		display: block;
 		flex: 0 0 auto;
+		flex-shrink: 0;
 		min-width: 250px;
+		width: 250px;
 	}
 
 	.product-card {
 		display: flex;
 		flex-direction: column;
+		flex-shrink: 0;
 		min-width: 250px;
 		width: 250px;
 		height: 250px;
@@ -199,6 +211,7 @@ import { products } from '../../data/products';
 		align-items: center;
 		justify-content: center;
 		width: 100%;
+		height: 100%;
 		min-height: 180px;
 		border: 1px solid rgb(100 116 139);
 		border-radius: 0.5rem;
@@ -206,18 +219,8 @@ import { products } from '../../data/products';
 		overflow: hidden;
 	}
 
-	.product-card__media.is-loading .product-card__image,
-	.product-card__media.is-slow .product-card__image {
+	.product-card__media.is-error .product-card__image {
 		opacity: 0;
-	}
-
-	.product-card__media.is-loaded .product-card__image {
-		opacity: 1;
-		transition: opacity 0.25s ease;
-	}
-
-	.product-card__media.is-error {
-		background: rgb(71 85 105);
 	}
 
 	.product-card__image {
