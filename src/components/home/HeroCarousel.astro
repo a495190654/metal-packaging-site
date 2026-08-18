@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { products } from '../../data/products';
 ---
 
@@ -7,53 +8,118 @@ import { products } from '../../data/products';
 
 	<div class="product-marquee__viewport">
 		<div class="product-marquee__track">
-			<ul class="product-marquee__group">
-				{
-					products.map((product) => (
-						<li class="product-marquee__item">
-							<div class="product-card">
-								<div class="product-card__media">
-									<img
-										src={product.src}
-										alt={product.alt}
-										width="250"
-										height="250"
-										class="product-card__image"
-										loading="lazy"
-										decoding="async"
-										onerror="this.hidden = true"
-									/>
+			{
+				[false, true].map((isDuplicate) => (
+					<ul class="product-marquee__group" aria-hidden={isDuplicate ? 'true' : undefined}>
+						{products.map((product) => (
+							<li class="product-marquee__item">
+								<div class="product-card">
+									<div class="product-card__media is-loading">
+										<Image
+											src={product.image}
+											alt={isDuplicate ? '' : product.alt}
+											width={250}
+											height={250}
+											widths={[180, 220, 250]}
+											sizes="(max-width: 640px) 180px, 250px"
+											loading="lazy"
+											decoding="async"
+											class="product-card__image"
+										/>
+									</div>
 								</div>
-							</div>
-						</li>
-					))
-				}
-			</ul>
-			<ul class="product-marquee__group" aria-hidden="true">
-				{
-					products.map((product) => (
-						<li class="product-marquee__item">
-							<div class="product-card">
-								<div class="product-card__media">
-									<img
-										src={product.src}
-										alt=""
-										width="250"
-										height="250"
-										class="product-card__image"
-										loading="lazy"
-										decoding="async"
-										onerror="this.hidden = true"
-									/>
-								</div>
-							</div>
-						</li>
-					))
-				}
-			</ul>
+							</li>
+						))}
+					</ul>
+				))
+			}
 		</div>
 	</div>
 </section>
+
+<script>
+	const LOAD_TIMEOUT_MS = 3000;
+
+	function initMarqueeImages() {
+		const viewport = document.querySelector('.product-marquee__viewport');
+		if (!viewport) return;
+
+		const images = viewport.querySelectorAll<HTMLImageElement>('.product-card__image');
+
+		images.forEach((img) => {
+			const media = img.closest('.product-card__media');
+			if (!media) return;
+
+			const markLoaded = () => {
+				media.classList.remove('is-loading', 'is-slow');
+				media.classList.add('is-loaded');
+			};
+
+			const markError = () => {
+				media.classList.remove('is-loading', 'is-slow');
+				media.classList.add('is-error');
+				img.hidden = true;
+			};
+
+			const slowTimer = window.setTimeout(() => {
+				if (!img.complete || img.naturalWidth === 0) {
+					media.classList.add('is-slow');
+				}
+			}, LOAD_TIMEOUT_MS);
+
+			const clearSlowTimer = () => window.clearTimeout(slowTimer);
+
+			if (img.complete && img.naturalWidth > 0) {
+				clearSlowTimer();
+				markLoaded();
+			} else {
+				img.addEventListener(
+					'load',
+					() => {
+						clearSlowTimer();
+						markLoaded();
+					},
+					{ once: true },
+				);
+				img.addEventListener(
+					'error',
+					() => {
+						clearSlowTimer();
+						markError();
+					},
+					{ once: true },
+				);
+			}
+		});
+
+		// 懒加载在 transform 动画容器内可能失效，用 IO 提前触发即将进入视口的图片
+		if (!('IntersectionObserver' in window)) return;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (!entry.isIntersecting) return;
+
+					const img = entry.target;
+					if (!(img instanceof HTMLImageElement) || img.complete) return;
+
+					img.loading = 'eager';
+					const src = img.currentSrc || img.src;
+					if (src) {
+						img.src = '';
+						img.src = src;
+					}
+				});
+			},
+			{ root: null, rootMargin: '0px 320px', threshold: 0 },
+		);
+
+		images.forEach((img) => observer.observe(img));
+	}
+
+	initMarqueeImages();
+	document.addEventListener('astro:page-load', initMarqueeImages);
+</script>
 
 <style is:global>
 	.product-marquee {
@@ -86,6 +152,9 @@ import { products } from '../../data/products';
 		flex-shrink: 0;
 		animation: product-marquee-scroll 45s linear infinite;
 		will-change: transform;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		transform: translate3d(0, 0, 0);
 	}
 
 	.product-marquee__viewport:hover .product-marquee__track {
@@ -129,29 +198,43 @@ import { products } from '../../data/products';
 		flex: 1 1 auto;
 		align-items: center;
 		justify-content: center;
-		min-height: 0;
+		width: 100%;
+		min-height: 180px;
 		border: 1px solid rgb(100 116 139);
 		border-radius: 0.5rem;
-		background: rgb(30 41 59);
+		background: rgb(71 85 105);
 		overflow: hidden;
+	}
+
+	.product-card__media.is-loading .product-card__image,
+	.product-card__media.is-slow .product-card__image {
+		opacity: 0;
+	}
+
+	.product-card__media.is-loaded .product-card__image {
+		opacity: 1;
+		transition: opacity 0.25s ease;
+	}
+
+	.product-card__media.is-error {
+		background: rgb(71 85 105);
 	}
 
 	.product-card__image {
 		display: block;
 		max-width: 100%;
-		max-height: 100%;
-		width: auto;
 		height: auto;
+		width: 100%;
 		object-fit: contain;
 		object-position: center;
 	}
 
 	@keyframes product-marquee-scroll {
 		from {
-			transform: translateX(0);
+			transform: translate3d(0, 0, 0);
 		}
 		to {
-			transform: translateX(-50%);
+			transform: translate3d(-50%, 0, 0);
 		}
 	}
 </style>
