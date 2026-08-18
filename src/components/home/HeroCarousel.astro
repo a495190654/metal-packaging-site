@@ -1,0 +1,157 @@
+---
+import { products } from '../../data/products';
+---
+
+<section class="product-marquee bg-slate-950 py-8 sm:py-10 lg:py-12" aria-labelledby="hot-products-heading">
+	<h2 id="hot-products-heading" class="product-marquee__heading">Hot Products</h2>
+
+	<div class="product-marquee__viewport">
+		<div class="product-marquee__track">
+			<ul class="product-marquee__group">
+				{
+					products.map((product) => (
+						<li class="product-marquee__item">
+							<div class="product-card">
+								<div class="product-card__media">
+									<img
+										src={product.src}
+										alt={product.alt}
+										width="250"
+										height="250"
+										class="product-card__image"
+										loading="lazy"
+										decoding="async"
+										onerror="this.hidden = true"
+									/>
+								</div>
+							</div>
+						</li>
+					))
+				}
+			</ul>
+			<ul class="product-marquee__group" aria-hidden="true">
+				{
+					products.map((product) => (
+						<li class="product-marquee__item">
+							<div class="product-card">
+								<div class="product-card__media">
+									<img
+										src={product.src}
+										alt=""
+										width="250"
+										height="250"
+										class="product-card__image"
+										loading="lazy"
+										decoding="async"
+										onerror="this.hidden = true"
+									/>
+								</div>
+							</div>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</section>
+
+<style is:global>
+	.product-marquee {
+		width: 100%;
+		max-width: none;
+	}
+
+	.product-marquee__heading {
+		margin: 0 0 1.5rem;
+		text-align: center;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		letter-spacing: 0.28em;
+		text-transform: uppercase;
+		color: rgb(148 163 184);
+	}
+
+	.product-marquee__viewport {
+		overflow: hidden;
+		width: 100%;
+		max-width: none;
+	}
+
+	.product-marquee__track {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: stretch;
+		width: max-content;
+		flex-shrink: 0;
+		animation: product-marquee-scroll 45s linear infinite;
+		will-change: transform;
+	}
+
+	.product-marquee__viewport:hover .product-marquee__track {
+		animation-play-state: paused;
+	}
+
+	.product-marquee__group {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		flex-shrink: 0;
+		align-items: stretch;
+		gap: 1.5rem;
+		margin: 0;
+		padding: 0 0.75rem;
+		list-style: none;
+	}
+
+	.product-marquee__item {
+		display: block;
+		flex: 0 0 auto;
+		min-width: 250px;
+	}
+
+	.product-card {
+		display: flex;
+		flex-direction: column;
+		min-width: 250px;
+		width: 250px;
+		height: 250px;
+		margin: 0;
+		padding: 0.875rem;
+		border: 1px solid rgb(100 116 139);
+		border-radius: 0.875rem;
+		background: rgb(15 23 42);
+		box-shadow: 0 4px 20px rgb(0 0 0 / 0.3);
+	}
+
+	.product-card__media {
+		display: flex;
+		flex: 1 1 auto;
+		align-items: center;
+		justify-content: center;
+		min-height: 0;
+		border: 1px solid rgb(100 116 139);
+		border-radius: 0.5rem;
+		background: rgb(30 41 59);
+		overflow: hidden;
+	}
+
+	.product-card__image {
+		display: block;
+		max-width: 100%;
+		max-height: 100%;
+		width: auto;
+		height: auto;
+		object-fit: contain;
+		object-position: center;
+	}
+
+	@keyframes product-marquee-scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+</style>

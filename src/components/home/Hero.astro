@@ -1,21 +1,5 @@
 ---
-const products = [
-	{
-		src: '/hero-product-gold.png',
-		alt: 'Gold easy-open end with ring pull tab',
-		label: 'Tinplate EOE',
-	},
-	{
-		src: '/hero-product-silver.png',
-		alt: 'Silver aluminum easy-open end lid',
-		label: 'Aluminum EOE',
-	},
-	{
-		src: '/hero-product-peel.png',
-		alt: 'Peel-off foil easy-open lid',
-		label: 'Peel-off Lid',
-	},
-];
+import { featuredProducts } from '../../data/products';
 
 const valuePoints = ['Reasonable Price', 'Reputation First', 'High-Quality'];
 ---
@@ -116,7 +100,7 @@ const valuePoints = ['Reasonable Price', 'Reputation First', 'High-Quality'];
 
 					<div class="grid grid-cols-3 gap-2 sm:gap-3">
 						{
-							products.map((product) => (
+							featuredProducts.map((product) => (
 								<figure class="group flex flex-col items-center text-center">
 									<div class="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-slate-50 p-1.5 sm:p-2">
 										<img
@@ -130,7 +114,7 @@ const valuePoints = ['Reasonable Price', 'Reputation First', 'High-Quality'];
 										/>
 									</div>
 									<figcaption class="mt-1.5 text-[10px] font-medium leading-tight text-slate-600 sm:text-xs">
-										{product.label}
+										{product.name}
 									</figcaption>
 								</figure>
 							))
