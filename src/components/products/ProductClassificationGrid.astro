@@ -38,25 +38,25 @@ const { showSectionHeader = true } = Astro.props;
 			)
 		}
 
-		<div class="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-7">
+		<div class="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-7">
 			{
 				categories.map((category) => (
 					<article
 						class:list={[
-							'group relative flex flex-col overflow-hidden rounded-xl border bg-white transition-shadow hover:shadow-md sm:flex-row sm:items-stretch',
+							'group relative flex min-w-0 flex-col overflow-hidden rounded-lg border bg-white transition-shadow hover:shadow-md md:flex-row md:items-stretch md:rounded-xl',
 							category.featured
 								? 'border-amber-400/60 ring-1 ring-amber-400/25'
 								: 'border-slate-200 hover:border-slate-300',
 						]}
 					>
 						{category.featured && (
-							<span class="absolute right-3 top-3 z-10 rounded-full bg-amber-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow-sm">
+							<span class="absolute right-1.5 top-1.5 z-10 rounded-full bg-amber-500 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white shadow-sm md:right-3 md:top-3 md:px-2.5 md:py-1 md:text-[10px]">
 								Hot
 							</span>
 						)}
 
-						<div class="flex shrink-0 items-center justify-center bg-slate-50 p-4 sm:w-[42%] sm:p-5">
-							<div class="flex aspect-square w-full max-w-[180px] items-center justify-center sm:max-w-none">
+						<div class="flex shrink-0 items-center justify-center bg-slate-50 p-2 md:w-[42%] md:p-5">
+							<div class="flex aspect-square w-full max-w-[120px] items-center justify-center md:max-w-none">
 								<img
 									src={category.image}
 									alt={category.imageAlt}
@@ -64,22 +64,24 @@ const { showSectionHeader = true } = Astro.props;
 									height="220"
 									loading="lazy"
 									decoding="async"
-									class="h-full w-full object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+									class="h-full w-full max-h-[100px] object-contain transition-transform duration-300 group-hover:scale-[1.03] md:max-h-none"
 								/>
 							</div>
 						</div>
 
-						<div class="flex flex-1 flex-col justify-between gap-4 p-5 sm:p-6">
-							<div>
-								<h3 class="text-lg font-bold leading-snug text-slate-900 sm:text-xl">{category.title}</h3>
-								<ul class="mt-3 space-y-1.5 text-sm text-slate-600">
+						<div class="flex min-w-0 flex-1 flex-col justify-between gap-2 p-2.5 md:gap-4 md:p-6">
+							<div class="min-w-0">
+								<h3 class="truncate text-xs font-bold leading-tight text-slate-900 md:text-lg md:leading-snug lg:text-xl">
+									{category.title}
+								</h3>
+								<ul class="mt-1 space-y-0.5 text-[10px] leading-tight text-slate-600 md:mt-3 md:space-y-1.5 md:text-sm md:leading-normal">
 									{category.highlights.map((point) => (
-										<li class="flex items-center gap-2">
+										<li class="flex min-w-0 items-center gap-1.5 md:gap-2">
 											<span
-												class="h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500"
+												class="h-1 w-1 shrink-0 rounded-full bg-sky-500 md:h-1.5 md:w-1.5"
 												aria-hidden="true"
 											/>
-											<span>{point}</span>
+											<span class="truncate">{point}</span>
 										</li>
 									))}
 								</ul>
@@ -87,7 +89,7 @@ const { showSectionHeader = true } = Astro.props;
 
 							<a
 								href={category.href}
-								class="more-link inline-flex items-center gap-1 self-start text-sm font-semibold tracking-wide text-sky-600 transition-all hover:translate-x-1 hover:text-sky-700"
+								class="more-link inline-flex items-center gap-0.5 self-start text-[10px] font-semibold tracking-wide text-sky-600 transition-all hover:translate-x-0.5 hover:text-sky-700 md:gap-1 md:text-sm md:hover:translate-x-1"
 							>
 								MORE &gt;&gt;
 							</a>
