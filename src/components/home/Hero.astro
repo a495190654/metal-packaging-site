@@ -21,22 +21,30 @@ const valuePoints = ['Reasonable Price', 'Reputation First', 'High-Quality'];
 ---
 
 <section class="relative overflow-hidden bg-slate-900">
-	<!-- 桌面端：右侧区域背景产线图（移动端隐藏，避免遮挡文字） -->
-	<div class="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
+	<!-- 背景产线图：全端显示，移动端遮罩更轻以便看见底图 -->
+	<div class="pointer-events-none absolute inset-0" aria-hidden="true">
 		<img
 			src="/hero-bg.png"
 			alt=""
 			width="1920"
 			height="1080"
-			class="h-full w-full object-cover object-center brightness-110"
+			class="h-full w-full object-cover object-[center_35%] brightness-125 sm:object-center lg:brightness-110"
 		/>
-		<div class="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/65 to-slate-800/35"></div>
+		<!-- 移动端：自上而下渐弱遮罩，保留底图可见度 -->
+		<div
+			class="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-900/50 to-slate-800/25 lg:hidden"
+		></div>
+		<!-- 桌面端：左右渐变遮罩 -->
+		<div
+			class="absolute inset-0 hidden bg-gradient-to-r from-slate-950/80 via-slate-900/65 to-slate-800/35 lg:block"
+		></div>
 	</div>
 
 	<div class="relative mx-auto max-w-7xl px-4 pt-6 pb-8 sm:px-6 sm:pt-8 sm:pb-10 lg:px-8 lg:py-16">
 		<div class="grid grid-cols-1 items-center gap-5 sm:gap-6 lg:grid-cols-2 lg:gap-16">
 			<!-- 左栏：文案 -->
 			<div class="order-1 lg:text-left">
+				<div class="max-lg:rounded-2xl max-lg:bg-slate-950/30 max-lg:px-1 max-lg:py-2 max-lg:backdrop-blur-[2px]">
 				<span
 					class="mb-3 inline-flex items-center gap-1.5 rounded-full bg-sky-600/90 px-3 py-1 text-[11px] font-semibold tracking-wide text-white shadow-sm backdrop-blur-sm sm:text-xs"
 				>
@@ -56,16 +64,17 @@ const valuePoints = ['Reasonable Price', 'Reputation First', 'High-Quality'];
 				</span>
 
 				<h1
-					class="text-2xl font-extrabold leading-snug tracking-tight text-white sm:text-3xl lg:text-5xl xl:text-[3.25rem]"
+					class="text-2xl font-extrabold leading-snug tracking-tight text-white drop-shadow-md sm:text-3xl lg:text-5xl xl:text-[3.25rem]"
 				>
 					Professional
 					<span class="text-sky-400"> Easy Open End</span>
 					&amp; Custom Metal Packaging
 				</h1>
 
-				<p class="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base lg:mt-4 lg:text-lg">
+				<p class="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 drop-shadow-sm sm:text-base lg:mt-4 lg:text-lg">
 					Dedicated to high-quality metal packaging for global food, beverage, and packaging brands.
 				</p>
+				</div>
 
 				<!-- 桌面端：价值点放在文案区 -->
 				<ul class="mt-4 hidden flex-wrap gap-x-5 gap-y-2 text-sm text-slate-300 lg:flex">
