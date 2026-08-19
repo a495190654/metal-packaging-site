@@ -1,0 +1,176 @@
+---
+import { factoryEnterpriseImageSrc } from '../../data/media';
+
+const stats = [
+	{ value: '2010', label: 'Founded Year' },
+	{ value: '500M+', label: 'Annual Output' },
+	{ value: '20+', label: 'Production Lines' },
+	{ value: '24/7', label: 'Non-Stop Operation' },
+] as const;
+
+const advantages = [
+	{
+		title: 'Full Product Line',
+		description: 'Easy-Open Ends (EOE), Peel-Off Lids, Screw Caps & Bottom Ends',
+		icon: 'grid',
+	},
+	{
+		title: 'High Capacity',
+		description: '4 high-speed automated lines + 16 precision production machines',
+		icon: 'bolt',
+	},
+	{
+		title: 'Global Export',
+		description: 'Serving key markets in SE Asia, Middle East, Europe & Americas',
+		icon: 'globe',
+	},
+	{
+		title: 'Quality Guarantee',
+		description: '50+ technical specialists ensuring perfect seal integrity',
+		icon: 'shield',
+	},
+] as const;
+---
+
+<section id="factory" class="bg-slate-900 pb-12 pt-12 sm:pb-16 sm:pt-16 lg:pb-20 lg:pt-20">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<!-- 全宽横向全景 Banner -->
+		<div
+			class="group relative w-full overflow-hidden rounded-2xl border border-slate-700 bg-slate-800 shadow-2xl shadow-black/40"
+		>
+			<div
+				class="relative aspect-[16/9] w-full max-h-[220px] sm:aspect-[21/9] sm:max-h-[360px] lg:max-h-[480px]"
+			>
+				<img
+					src={factoryEnterpriseImageSrc}
+					alt="Mingtai Easy Open Lid Factory Building and Facility"
+					width="2100"
+					height="900"
+					loading="eager"
+					decoding="async"
+					fetchpriority="high"
+					class="h-full w-full object-cover object-[center_42%] transition-transform duration-700 group-hover:scale-[1.02] sm:object-center"
+				/>
+				<div
+					class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/50 via-slate-900/10 to-transparent"
+					aria-hidden="true"
+				></div>
+				<span
+					class="absolute bottom-3 left-3 max-w-[calc(100%-1.5rem)] rounded-full bg-slate-950/75 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-white backdrop-blur-md sm:bottom-4 sm:left-4 sm:px-4 sm:py-2 sm:text-xs"
+				>
+					Established 2010 • Shantou Special Economic Zone
+				</span>
+			</div>
+		</div>
+
+		<!-- 文案 -->
+		<div class="mt-10 sm:mt-12 lg:mt-14">
+			<span
+				class="mb-3 inline-flex items-center rounded-full bg-sky-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-sky-400"
+			>
+				Company Overview
+			</span>
+
+			<h2
+				class="max-w-4xl text-3xl font-extrabold leading-tight tracking-tight text-white lg:text-4xl lg:leading-[1.15]"
+			>
+				Precision Metal Packaging Solutions, Engineered for Global Reliability.
+			</h2>
+
+			<p class="mt-4 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg">
+				Founded in 2010, Mingtai is a leading manufacturer specializing in high-performance Easy-Open
+				Ends, Peel-Off Lids, and Custom Metal Closures. Powered by 20+ advanced automated production
+				lines, we deliver over 500 million pieces annually to trusted partners worldwide.
+			</p>
+		</div>
+
+		<!-- 高对比数据条 -->
+		<div class="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:grid-cols-4 sm:gap-4">
+			{
+				stats.map((stat) => (
+					<div class="rounded-xl border border-slate-700 bg-slate-800/80 px-3 py-4 text-center sm:py-5">
+						<div class="text-xl font-extrabold text-sky-400 sm:text-2xl lg:text-3xl">{stat.value}</div>
+						<div class="mt-1 text-[11px] font-medium uppercase tracking-wide text-slate-400 sm:text-xs">
+							{stat.label}
+						</div>
+					</div>
+				))
+			}
+		</div>
+
+		<!-- 2×2 优势网格 -->
+		<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-10 lg:gap-5">
+			{
+				advantages.map((item) => (
+					<div class="flex gap-3 rounded-xl border border-slate-700 bg-slate-800/50 p-4 sm:p-5">
+						<div
+							class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-950 text-sky-400 ring-1 ring-slate-700 sm:h-11 sm:w-11"
+							aria-hidden="true"
+						>
+							{item.icon === 'grid' && (
+								<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="1.75"
+										d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+									/>
+								</svg>
+							)}
+							{item.icon === 'bolt' && (
+								<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="1.75"
+										d="M13 10V3L4 14h7v7l9-11h-7z"
+									/>
+								</svg>
+							)}
+							{item.icon === 'globe' && (
+								<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="1.75"
+										d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+									/>
+								</svg>
+							)}
+							{item.icon === 'shield' && (
+								<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="1.75"
+										d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+									/>
+								</svg>
+							)}
+						</div>
+						<div class="min-w-0">
+							<h3 class="text-sm font-bold text-white sm:text-base">{item.title}</h3>
+							<p class="mt-1 text-sm leading-relaxed text-slate-300">{item.description}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+
+		<!-- CTA -->
+		<div class="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center">
+			<a
+				href="#products"
+				class="inline-flex items-center justify-center rounded-xl bg-sky-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-sky-950/30 transition hover:bg-sky-400 sm:text-base"
+			>
+				Explore Our Products
+			</a>
+			<a
+				href="#contact"
+				class="inline-flex items-center justify-center rounded-xl border border-slate-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-slate-800 sm:text-base"
+			>
+				Request a Fast Quote
+			</a>
+		</div>
+	</div>
+</section>

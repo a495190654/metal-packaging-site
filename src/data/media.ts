@@ -3,6 +3,9 @@ const R2_BASE = 'https://img.mingtaieoe.com/mingtai';
 /** 首屏 Hero Banner */
 export const heroBannerSrc = `${R2_BASE}/Hero/professional-easy-open-ends-custom-metal-packaging-manufacturer.webp`;
 
+/** 工厂企业形象图 */
+export const factoryEnterpriseImageSrc = `${R2_BASE}/Factory%20enterprise%20images/factory-enterprise-images.webp`;
+
 /** 产品轮播图 001–010 */
 export const carouselImageSrcs = Array.from({ length: 10 }, (_, index) => {
 	const number = String(index + 1).padStart(3, '0');
