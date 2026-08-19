@@ -1,0 +1,59 @@
+backend:
+  name: github
+  repo: a495190654/metal-packaging-site
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "posts"
+    label: "博客文章"
+    folder: "src/content/posts"
+    create: true
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布时间", name: "date", widget: "datetime" }
+      - { label: "正文", name: "body", widget: "markdown" }
+
+  - name: "products"
+    label: "Products"
+    label_singular: "Product"
+    folder: "src/content/products"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "title"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "hidden", default: "{{slug}}" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "Easy Open Ends"
+          - "Easy Peel-Off Lids"
+          - "Combination Covers"
+          - "Screw Lids"
+          - "Bottom Ends"
+      - { label: "Main Image", name: "mainImage", widget: "image", required: false, hint: "R2 URL or path under /uploads" }
+      - label: "Gallery Images"
+        name: "galleryImages"
+        widget: "list"
+        required: false
+        field: { label: "Image", name: "image", widget: "image" }
+      - label: "Specifications"
+        name: "specifications"
+        widget: "object"
+        fields:
+          - { label: "Diameter", name: "diameter", widget: "string", hint: 'e.g. 300# (73mm)' }
+          - { label: "Material", name: "material", widget: "string", hint: "e.g. TINPLATE / ALUMINUM" }
+          - { label: "Internal Coating", name: "internalCoating", widget: "string" }
+          - { label: "External Coating", name: "externalCoating", widget: "string" }
+          - { label: "Application", name: "application", widget: "string" }
+      - label: "Features"
+        name: "features"
+        widget: "list"
+        required: false
+        field: { label: "Feature", name: "feature", widget: "string" }
+      - { label: "Featured on Homepage", name: "isFeatured", widget: "boolean", default: false }
+      - { label: "Description", name: "body", widget: "markdown" }
