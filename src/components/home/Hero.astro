@@ -1,6 +1,6 @@
 ---
-import { Image } from 'astro:assets';
 import { featuredProducts } from '../../data/products';
+import { heroBannerSrc } from '../../data/media';
 
 const valuePoints = ['Reasonable Price', 'Reputation First', 'High-Quality'];
 ---
@@ -9,11 +9,14 @@ const valuePoints = ['Reasonable Price', 'Reputation First', 'High-Quality'];
 	<!-- 背景产线图：全端显示，移动端遮罩更轻以便看见底图 -->
 	<div class="pointer-events-none absolute inset-0" aria-hidden="true">
 		<img
-			src="/hero-bg.png"
+			src={heroBannerSrc}
 			alt=""
 			width="1920"
 			height="1080"
 			class="h-full w-full object-cover object-[center_35%] brightness-125 sm:object-center lg:brightness-110"
+			loading="eager"
+			decoding="async"
+			fetchpriority="high"
 		/>
 		<!-- 移动端：自上而下渐弱遮罩，保留底图可见度 -->
 		<div
@@ -104,13 +107,11 @@ const valuePoints = ['Reasonable Price', 'Reputation First', 'High-Quality'];
 							featuredProducts.map((product) => (
 								<figure class="group flex flex-col items-center text-center">
 									<div class="flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-slate-50 p-1.5 sm:p-2">
-										<Image
-											src={product.image}
+										<img
+											src={product.src}
 											alt={product.alt}
-											width={160}
-											height={160}
-											widths={[120, 160]}
-											sizes="(max-width: 640px) 100px, 160px"
+											width="160"
+											height="160"
 											loading="eager"
 											decoding="async"
 											class="h-auto max-h-full w-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"

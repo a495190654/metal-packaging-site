@@ -1,3 +1,5 @@
+import { categoryImageSrcs } from './media';
+
 export type ProductCategory = {
 	id: string;
 	title: string;
@@ -16,7 +18,7 @@ export const categories: ProductCategory[] = [
 		id: 'aluminum-eoe',
 		title: 'Aluminum Easy Open End',
 		highlights: ['Reputation First', 'High-Quality'],
-		image: '/categories/aluminum-eoe.png',
+		image: categoryImageSrcs[0],
 		imageAlt: 'Gold aluminum easy-open end with ring pull tab',
 		href: '/contact',
 	},
@@ -24,7 +26,7 @@ export const categories: ProductCategory[] = [
 		id: 'tinplate-eoe',
 		title: 'Tinplate Easy Open End',
 		highlights: ['Reputation First', 'High-Quality'],
-		image: '/categories/tinplate-eoe.png',
+		image: categoryImageSrcs[1],
 		imageAlt: 'Silver tinplate easy-open end with embossed opening instructions',
 		href: '/contact',
 		featured: true,
@@ -33,7 +35,7 @@ export const categories: ProductCategory[] = [
 		id: 'peel-off-lid',
 		title: 'Easy Peel off Lid',
 		highlights: ['Reputation First', 'High-Quality'],
-		image: '/categories/peel-off-lid.png',
+		image: categoryImageSrcs[2],
 		imageAlt: 'Aluminum peel-off can ends showing top and bottom views',
 		href: '/contact',
 	},
@@ -41,7 +43,7 @@ export const categories: ProductCategory[] = [
 		id: 'penny-lever-lid',
 		title: 'Penny Lever Lid',
 		highlights: ['Reputation First', 'High-Quality'],
-		image: '/categories/penny-lever-lid.png',
+		image: categoryImageSrcs[3],
 		imageAlt: 'Aluminum penny lever lid with foil seal and ring pull',
 		href: '/contact',
 	},
@@ -49,7 +51,7 @@ export const categories: ProductCategory[] = [
 		id: 'bottom-lid',
 		title: 'Bottom Lid',
 		highlights: ['Reputation First', 'High-Quality'],
-		image: '/categories/bottom-lid.png',
+		image: categoryImageSrcs[4],
 		imageAlt: 'Industrial bottom lids with ring pull tabs',
 		href: '/contact',
 	},
@@ -57,7 +59,7 @@ export const categories: ProductCategory[] = [
 		id: 'lug-screw-cap',
 		title: 'Lug Cap / Screw Cap',
 		highlights: ['Reputation First', 'High-Quality'],
-		image: '/categories/lug-screw-cap.png',
+		image: categoryImageSrcs[5],
 		imageAlt: 'Metal lug cap and screw cap for industrial containers',
 		href: '/contact',
 	},

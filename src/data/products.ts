@@ -1,94 +1,71 @@
-import type { ImageMetadata } from 'astro';
-import carousel01 from '../assets/carousel/carousel-01.webp';
-import carousel02 from '../assets/carousel/carousel-02.webp';
-import carousel03 from '../assets/carousel/carousel-03.webp';
-import carousel04 from '../assets/carousel/carousel-04.webp';
-import carousel05 from '../assets/carousel/carousel-05.webp';
-import carousel06 from '../assets/carousel/carousel-06.webp';
-import carousel07 from '../assets/carousel/carousel-07.webp';
-import carousel08 from '../assets/carousel/carousel-08.webp';
-import carousel09 from '../assets/carousel/carousel-09.webp';
-import carousel10 from '../assets/carousel/carousel-10.webp';
+import { carouselImageSrcs } from './media';
 
 export type Product = {
 	id: string;
-	/** Astro 资产：Hero 等使用 <Image /> 优化 */
-	image: ImageMetadata;
-	/** 静态 public 路径：轮播 marquee 直接引用，避免移动端 srcset 问题 */
 	src: string;
 	alt: string;
 	name: string;
 };
 
-/** 全站唯一产品图源数据 */
+/** 全站唯一产品图源数据（R2 CDN） */
 export const products: Product[] = [
 	{
 		id: 'aluminum-eoe',
-		image: carousel01,
-		src: '/carousel/carousel-01.webp',
+		src: carouselImageSrcs[0],
 		alt: 'Aluminum easy-open end',
 		name: 'Aluminum EOE',
 	},
 	{
 		id: 'dual-end',
-		image: carousel02,
-		src: '/carousel/carousel-02.webp',
+		src: carouselImageSrcs[1],
 		alt: 'Dual-end metal inspection',
 		name: 'Dual-End',
 	},
 	{
 		id: 'ring-pull',
-		image: carousel03,
-		src: '/carousel/carousel-03.webp',
+		src: carouselImageSrcs[2],
 		alt: 'Ring pull easy-open end',
 		name: 'Ring Pull',
 	},
 	{
 		id: 'tinplate-eoe',
-		image: carousel04,
-		src: '/carousel/carousel-04.webp',
+		src: carouselImageSrcs[3],
 		alt: 'Tinplate easy-open end',
 		name: 'Tinplate EOE',
 	},
 	{
 		id: 'stamping',
-		image: carousel05,
-		src: '/carousel/carousel-05.webp',
+		src: carouselImageSrcs[4],
 		alt: 'Precision stamped can end',
 		name: 'Stamping',
 	},
 	{
 		id: 'industrial-closure',
-		image: carousel06,
-		src: '/carousel/carousel-06.webp',
+		src: carouselImageSrcs[5],
 		alt: 'Industrial metal closure',
 		name: 'Industrial Closure',
 	},
 	{
 		id: 'tooling-qc',
-		image: carousel07,
-		src: '/carousel/carousel-07.webp',
+		src: carouselImageSrcs[6],
 		alt: 'Tooling quality inspection',
 		name: 'Tooling QC',
 	},
 	{
 		id: 'rd-lab',
-		image: carousel08,
-		src: '/carousel/carousel-08.webp',
+		src: carouselImageSrcs[7],
 		alt: 'R&D laboratory sample',
 		name: 'R&D Lab',
 	},
 	{
 		id: 'peel-off',
-		image: carousel09,
-		src: '/carousel/carousel-09.webp',
+		src: carouselImageSrcs[8],
 		alt: 'Peel-off seal lid',
 		name: 'Peel-off Seal',
 	},
 	{
 		id: 'pharma-closure',
-		image: carousel10,
-		src: '/carousel/carousel-10.webp',
+		src: carouselImageSrcs[9],
 		alt: 'Pharmaceutical pull-ring caps',
 		name: 'Pharma Closure',
 	},
