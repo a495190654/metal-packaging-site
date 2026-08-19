@@ -6,6 +6,9 @@ export const heroBannerSrc = `${R2_BASE}/Hero/professional-easy-open-ends-custom
 /** 工厂企业形象图 */
 export const factoryEnterpriseImageSrc = `${R2_BASE}/Factory%20enterprise%20images/factory-enterprise-images.webp`;
 
+/** 资质证书展示图 */
+export const ourCertificateImageSrc = `${R2_BASE}/Factory%20enterprise%20images/our-certificate.webp`;
+
 /** 产品轮播图 001–010 */
 export const carouselImageSrcs = Array.from({ length: 10 }, (_, index) => {
 	const number = String(index + 1).padStart(3, '0');
