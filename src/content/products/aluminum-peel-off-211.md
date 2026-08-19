@@ -2,10 +2,10 @@
 title: Aluminum Peel-Off Lid 211#
 slug: aluminum-peel-off-211
 category: Easy Peel-Off Lids
-mainImage: https://img.mingtaieoe.com/mingtai/carousel%20images/aluminum-can-carousel-image-009.webp
+mainImage: "https://img.mingtaieoe.com/mingtai/carousel images/aluminum-can-carousel-image-009.webp"
 galleryImages:
-  - https://img.mingtaieoe.com/mingtai/carousel%20images/aluminum-can-carousel-image-009.webp
-  - https://img.mingtaieoe.com/mingtai/category%20images/aluminum-can-classification-image-003.webp
+  - "https://img.mingtaieoe.com/mingtai/carousel images/aluminum-can-carousel-image-009.webp"
+  - "https://img.mingtaieoe.com/mingtai/category images/aluminum-can-classification-image-003.webp"
 specifications:
   diameter: '211# (65mm)'
   material: ALUMINUM

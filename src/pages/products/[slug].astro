@@ -4,6 +4,7 @@ import Header from '../../components/layout/Header.astro';
 import Footer from '../../components/layout/Footer.astro';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import { normalizeR2ImageUrl } from '../../data/media';
 
 export async function getStaticPaths() {
 	const products = await getCollection('products');
@@ -26,7 +27,8 @@ const related = allProducts
 	.filter((p) => p.data.category === category && p.data.slug !== slug)
 	.slice(0, 4);
 
-const gallery = galleryImages.length > 0 ? galleryImages : [mainImage];
+const gallery = (galleryImages.length > 0 ? galleryImages : [mainImage]).map(normalizeR2ImageUrl);
+const mainImageSrc = gallery[0];
 const categoryHref = `/products?category=${encodeURIComponent(category)}`;
 
 const specRows = [
@@ -69,7 +71,7 @@ const specRows = [
 					<div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
 						<img
 							id="gallery-main"
-							src={gallery[0]}
+							src={mainImageSrc}
 							alt={title}
 							width={640}
 							height={640}
@@ -174,7 +176,7 @@ const specRows = [
 								>
 									<div class="aspect-[4/3] overflow-hidden bg-slate-900">
 										<img
-											src={item.data.mainImage}
+											src={normalizeR2ImageUrl(item.data.mainImage)}
 											alt={item.data.title}
 											width={320}
 											height={240}
