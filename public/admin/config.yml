@@ -2,8 +2,6 @@ backend:
   name: github
   repo: a495190654/metal-packaging-site
   branch: main
-  base_url: https://decap-bridge.vercel.app
-  auth_endpoint: /api/auth
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
