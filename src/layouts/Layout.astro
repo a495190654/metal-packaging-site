@@ -1,13 +1,11 @@
 ---
 import '../styles/global.css';
-import { r2Url, R2_FOLDERS } from '../data/media';
+import { faviconSrc } from '../data/media';
 
 interface Props {
 	title?: string;
 	description?: string;
 }
-
-const faviconSrc = `${r2Url(R2_FOLDERS.factoryImages, 'logo.webp')}?v=2`;
 
 const {
 	title = 'ProHair Manufacturing | OEM/ODM Hair Dryer & Personal Care Factory',

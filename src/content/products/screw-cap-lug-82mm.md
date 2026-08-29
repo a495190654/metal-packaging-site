@@ -2,9 +2,9 @@
 title: Lug Screw Cap 82mm
 slug: screw-cap-lug-82mm
 category: Lug Cap/Screw Cap
-mainImage: "https://img.mingtaieoe.com/mingtai/category images/aluminum-can-classification-image-006.webp"
+mainImage: "https://img.mingtaieoe.com/mingtai/category-images/aluminum-can-classification-image-006.webp"
 galleryImages:
-  - "https://img.mingtaieoe.com/mingtai/category images/aluminum-can-classification-image-006.webp"
+  - "https://img.mingtaieoe.com/mingtai/category-images/aluminum-can-classification-image-006.webp"
 specifications:
   diameter: 82mm
   material: TINPLATE / ALUMINUM

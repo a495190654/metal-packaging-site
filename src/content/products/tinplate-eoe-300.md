@@ -2,10 +2,10 @@
 title: Tinplate Easy Open End 300#
 slug: tinplate-eoe-300
 category: Tinplate ETP/TFS Easy Open End
-mainImage: "https://img.mingtaieoe.com/mingtai/carousel images/aluminum-can-carousel-image-004.webp"
+mainImage: "https://img.mingtaieoe.com/mingtai/carousel-images/aluminum-can-carousel-image-004.webp"
 galleryImages:
-  - "https://img.mingtaieoe.com/mingtai/carousel images/aluminum-can-carousel-image-004.webp"
-  - "https://img.mingtaieoe.com/mingtai/carousel images/aluminum-can-carousel-image-001.webp"
+  - "https://img.mingtaieoe.com/mingtai/carousel-images/aluminum-can-carousel-image-004.webp"
+  - "https://img.mingtaieoe.com/mingtai/carousel-images/aluminum-can-carousel-image-001.webp"
 specifications:
   diameter: '300# (73mm)'
   material: TINPLATE

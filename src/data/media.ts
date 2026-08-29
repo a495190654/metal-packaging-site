@@ -1,29 +1,51 @@
 const R2_BASE = 'https://img.mingtaieoe.com/mingtai';
 
+/** Bump when R2 assets change to bust browser/CDN cache */
+export const ASSET_VERSION = '2';
+
 /** R2 folder names — case-sensitive, must match bucket exactly */
 export const R2_FOLDERS = {
 	hero: 'hero',
-	factory: 'Factory enterprise images',
 	factoryImages: 'factory-images',
 	carousel: 'carousel-images',
 	category: 'category-images',
 } as const;
 
-/** Build a case-correct R2 URL with spaces encoded for reliable mobile requests */
+/** Force https for external asset URLs */
+export function ensureHttps(url: string): string {
+	return url.replace(/^http:\/\//i, 'https://');
+}
+
+/** Append cache-busting version query string */
+export function withAssetVersion(url: string): string {
+	const base = ensureHttps(url.split('?')[0] ?? url);
+	return `${base}?v=${ASSET_VERSION}`;
+}
+
+/** Build a case-correct R2 URL with spaces encoded and cache busting */
 export function r2Url(...segments: string[]): string {
 	const path = segments.filter(Boolean).join('/');
-	return encodeURI(`${R2_BASE}/${path}`);
+	return withAssetVersion(encodeURI(`${R2_BASE}/${path}`));
 }
 
 /** Normalize an existing R2 URL (handles both encoded and unencoded paths) */
 export function normalizeR2ImageUrl(url: string): string {
-	if (!url.startsWith(R2_BASE)) return url;
+	const secureUrl = ensureHttps(url);
+
+	if (!secureUrl.startsWith(R2_BASE)) {
+		return secureUrl;
+	}
+
 	try {
-		return encodeURI(decodeURI(url));
+		return withAssetVersion(encodeURI(decodeURI(secureUrl.split('?')[0] ?? secureUrl)));
 	} catch {
-		return encodeURI(url);
+		return withAssetVersion(encodeURI(secureUrl.split('?')[0] ?? secureUrl));
 	}
 }
+
+/** Site logo / favicon */
+export const logoSrc = r2Url(R2_FOLDERS.factoryImages, 'logo.webp');
+export const faviconSrc = logoSrc;
 
 /** 首屏 Hero Banner */
 export const heroBannerSrc = r2Url(R2_FOLDERS.hero, 'packaging-manufacturer.webp');
