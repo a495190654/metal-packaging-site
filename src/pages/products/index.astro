@@ -13,7 +13,7 @@ const products = (await getCollection('products')).sort((a, b) =>
 const filterOptions = [
 	{ label: 'All', value: 'all' },
 	...productCategories.map((cat) => ({
-		label: cat === 'Easy Peel-Off Lids' ? 'Peel-Off Lids' : cat,
+		label: cat,
 		value: cat,
 	})),
 ];
@@ -21,7 +21,7 @@ const filterOptions = [
 
 <Layout
 	title="Product Catalog | Minter Metal Packaging"
-	description="Browse Minter's premium easy-open metal packaging — easy open ends, peel-off lids, combination covers, screw lids, and bottom ends."
+	description="Browse Minter's premium easy-open metal packaging — pull caps, tinplate and aluminum easy open ends, peel-off lids, lug caps, and bottom ends."
 >
 	<Header />
 	<main class="bg-slate-900">

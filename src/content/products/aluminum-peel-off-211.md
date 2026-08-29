@@ -1,7 +1,7 @@
 ---
 title: Aluminum Peel-Off Lid 211#
 slug: aluminum-peel-off-211
-category: Easy Peel-Off Lids
+category: Easy Peel Off Lid
 mainImage: "https://img.mingtaieoe.com/mingtai/carousel images/aluminum-can-carousel-image-009.webp"
 galleryImages:
   - "https://img.mingtaieoe.com/mingtai/carousel images/aluminum-can-carousel-image-009.webp"

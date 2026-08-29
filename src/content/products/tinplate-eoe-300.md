@@ -1,7 +1,7 @@
 ---
 title: Tinplate Easy Open End 300#
 slug: tinplate-eoe-300
-category: Easy Open Ends
+category: Tinplate ETP/TFS Easy Open End
 mainImage: "https://img.mingtaieoe.com/mingtai/carousel images/aluminum-can-carousel-image-004.webp"
 galleryImages:
   - "https://img.mingtaieoe.com/mingtai/carousel images/aluminum-can-carousel-image-004.webp"
