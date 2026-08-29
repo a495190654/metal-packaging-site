@@ -2,10 +2,11 @@ const R2_BASE = 'https://img.mingtaieoe.com/mingtai';
 
 /** R2 folder names — case-sensitive, must match bucket exactly */
 export const R2_FOLDERS = {
-	hero: 'Hero',
+	hero: 'hero',
 	factory: 'Factory enterprise images',
-	carousel: 'carousel images',
-	category: 'category images',
+	factoryImages: 'factory-images',
+	carousel: 'carousel-images',
+	category: 'category-images',
 } as const;
 
 /** Build a case-correct R2 URL with spaces encoded for reliable mobile requests */
@@ -25,16 +26,13 @@ export function normalizeR2ImageUrl(url: string): string {
 }
 
 /** 首屏 Hero Banner */
-export const heroBannerSrc = r2Url(
-	R2_FOLDERS.hero,
-	'professional-easy-open-ends-custom-metal-packaging-manufacturer.webp',
-);
+export const heroBannerSrc = r2Url(R2_FOLDERS.hero, 'packaging-manufacturer.webp');
 
 /** 工厂企业形象图 */
-export const factoryEnterpriseImageSrc = r2Url(R2_FOLDERS.factory, 'factory-enterprise-images.webp');
+export const factoryEnterpriseImageSrc = r2Url(R2_FOLDERS.factoryImages, 'factory-enterprise-images.webp');
 
 /** 资质证书展示图 */
-export const ourCertificateImageSrc = r2Url(R2_FOLDERS.factory, 'our-certificate.webp');
+export const ourCertificateImageSrc = r2Url(R2_FOLDERS.factoryImages, 'our-certificate.webp');
 
 /** 产品轮播图 001–010 */
 export const carouselImageSrcs = Array.from({ length: 10 }, (_, index) => {
