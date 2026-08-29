@@ -1,4 +1,8 @@
 ---
+import { r2Url, R2_FOLDERS } from '../../data/media';
+
+const logoSrc = r2Url(R2_FOLDERS.factory, 'logo.png');
+
 const productLinks = [
 	{ label: 'See all categories', href: '/products' },
 	{ label: 'Pull Cap', href: '/products?category=Pull%20Cap' },
@@ -30,7 +34,7 @@ const navLinks = [
 			<!-- Logo -->
 			<a href="/" class="group flex shrink-0 items-center gap-3">
 				<img
-					src="/minter-logo.png"
+					src={logoSrc}
 					alt="Minter Logo"
 					width="120"
 					height="48"
