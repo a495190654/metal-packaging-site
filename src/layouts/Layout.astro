@@ -1,10 +1,13 @@
 ---
 import '../styles/global.css';
+import { r2Url, R2_FOLDERS } from '../data/media';
 
 interface Props {
 	title?: string;
 	description?: string;
 }
+
+const faviconSrc = r2Url(R2_FOLDERS.factory, 'logo.png');
 
 const {
 	title = 'ProHair Manufacturing | OEM/ODM Hair Dryer & Personal Care Factory',
@@ -19,8 +22,7 @@ const {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
 		<meta name="description" content={description} />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" href={faviconSrc} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
